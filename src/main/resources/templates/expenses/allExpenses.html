@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TSS_AK</title>
+</head>
+<body>
+
+<h4 th:text="#{tss.author}"></h4>
+<h3 th:text="#{tss.title}"></h3>
+<table>
+    <thead>Expenses</thead>
+    <thead>
+    <tr>
+        <th> No.</th>
+        <th> Date</th>
+        <th> Description</th>
+        <th> Category</th>
+        <th> Amount</th>
+        <th> Type</th>
+        <th> User</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${expenses.isEmpty()}">
+        <td> No</td>
+        <td>Expenses</td>
+    </tr>
+    <tr th:each="eachExpense : ${expenses}">
+        <td><span th:text="${eachExpense.expenseId}"> id </span></td>
+        <td><span th:text="${eachExpense.date}"> date </span></td>
+        <td><span th:text="${eachExpense.description}"> description </span></td>
+        <td><span th:text="${eachExpense.category}"> category </span></td>
+        <td><span th:text="${eachExpense.amount}"> amount </span></td>
+        <td><span th:text="${eachExpense.type}"> type </span></td>
+        <td><span th:text="${eachExpense.user.getUserId()}"> user </span></td>
+
+
+    </tr>
+    </tbody>
+</table>
+
+<form th:action="@{/add-expense}" th:object="${newExpense}" method="post">
+    <p>Date of the expense: <input type="date" th:field="*{date}"></p>
+    <p>Description of the expense: <input type="text" th:field="*{description}"></p>
+    <p>Category of the expense: <input type="text" th:field="*{category}"></p>
+    <p>Value of the expense: <input type="text" th:field="*{amount}"></p>
+    <p>Type of the expense: <input type="text" th:field="*{type}"></p>
+    <p>User id: <input type="number" th:field="*{user}"></p>
+
+    <p><input type="submit" value="ADD"></p>
+</form>
+</p>
+
+</body>
+</html>
