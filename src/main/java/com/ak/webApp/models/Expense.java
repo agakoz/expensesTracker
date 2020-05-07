@@ -37,8 +37,7 @@ public class Expense {
 
     @Column
     @NonNull
-    @Positive
-    @Size(max = 8)
+  //  @Positive
     private BigDecimal amount;
 
     @Column
