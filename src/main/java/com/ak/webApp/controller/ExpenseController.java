@@ -25,7 +25,7 @@ public class ExpenseController {
         this.expenseRepository = expenseRepository;
     }
 
-    @GetMapping("/allExpenses")
+    @GetMapping("/expenses")
     public String showAll(Model model) {
         model.addAttribute("expenses", expenseRepository.findAll());
         model.addAttribute("date", expense.getDate());
@@ -35,7 +35,7 @@ public class ExpenseController {
         model.addAttribute("Type", expense.getType());
         model.addAttribute("user", expense.getUser());
         model.addAttribute("newExpense", new Expense());
-        return "expenses/allExpenses";
+        return "/expenses";
     }
 
     @PostMapping("/add-expense")
@@ -43,7 +43,7 @@ public class ExpenseController {
         Expense lastExpense = expenseRepository.findAll().stream().reduce((a, b) -> b).orElse(null);
         newExpense.setExpenseId(getNewId(lastExpense));
         expenseRepository.save(newExpense);
-        return "redirect:/allExpenses";
+        return "redirect:/expenses";
     }
 
     private int getNewId(Expense lastExpense) {
@@ -51,7 +51,7 @@ public class ExpenseController {
     }
 
 
-    @GetMapping("/allExpenses/{userId}")
+    @GetMapping("/expenses/{userId}")
     public @ResponseBody
     List<Expense> getAllExpensesOfAUserById(@PathVariable int userId) {
         return expenseRepository.findAllByUSerId(userId);

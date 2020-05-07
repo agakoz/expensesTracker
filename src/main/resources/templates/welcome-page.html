@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{tss.pageTitle}"></title>
+</head>
+<body>
+    <h5 th:text="#{tss.author}"></h5>
+    <h1 th:text="#{tss.appName}"></h1>
+
+    <div>
+        <p>default user: user/user </p>
+    </div>
+
+    <form th:action="@{/expenses}" method="get">
+        <input type="submit" value="login"/>
+    </form>
+    <form th:action="@{/sign-up}" method="get">
+        <input type="submit" value="sign-up"/>
+    </form>
+</body>
+</html>
