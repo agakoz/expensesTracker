@@ -34,15 +34,20 @@ public class ExpenseController {
         this.expenseRepository = expenseRepository;
     }
 
-    @GetMapping("/expenses")
+    @GetMapping("/allExpenses")
     public String getAllExpenses(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        int currentUserId = -1;
-
+        int currentUserId ;
+        String username;
         if (principal instanceof UserDetails) {
             currentUserId = ((User) (principal)).getUserId();
+            username = ((User) (principal)).getUsername();
+        } else {
+            currentUserId = -1;
+            username = principal.toString();
         }
+
 
         List<Expense> expenses = expenseRepository.findByUserId(currentUserId);
         Map<Integer, List<Object>> expensesMap = new HashMap<>();
@@ -51,11 +56,11 @@ public class ExpenseController {
             List<Object> expenseObjects = getExpenseData(expense);
             expensesMap.put(expense.getExpenseId(), expenseObjects);
         });
-        model.addAttribute("username", ((User) (principal)).getUsername());
+        model.addAttribute("username", username);
         model.addAttribute("userId", currentUserId);
         model.addAttribute("expensesMap", expensesMap);
         model.addAttribute("newExpense", new Expense());
-        return "/expenses";
+        return "/expenses/expenses";
     }
 
     private List<Object> getExpenseData(Expense expense) {
@@ -81,7 +86,7 @@ public class ExpenseController {
         newExpense.setExpenseId(getNewId());
 
         expenseRepository.save(newExpense);
-        return "redirect:/expenses";
+        return "redirect:/allExpenses";
     }
 
 
