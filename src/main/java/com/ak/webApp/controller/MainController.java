@@ -1,6 +1,7 @@
 package com.ak.webApp.controller;
 
 import com.ak.webApp.models.User;
+import com.ak.webApp.repository.UserRepository;
 import com.ak.webApp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,35 +16,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 
 @Controller
-public class SignUpController {
+public class MainController {
 
     private UserService userService;
+    private UserRepository userRepository;
 
-    public SignUpController(UserService userService) {
+    public MainController(UserService userService, UserRepository userRepository) {
+
         this.userService = userService;
+        this.userRepository = userRepository;
+    }
+
+    @GetMapping("/welcome-page")
+
+    public String welcomePage( @RequestParam(value = "logout", required = false) String logout, Model model) {
+
+        List<User> users = userRepository.findAll();
+        model.addAttribute("users", users);
+        if(null != logout){
+            model.addAttribute("logout", "You have been logged out");
+        }
+        return "welcome-page";
     }
 
 
-
-//    @GetMapping("/hello")
-//    public String helloAdmin(Principal principal, Model model) {
-//        model.addAttribute("name", principal.getName());
-//        Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-//        Object details = SecurityContextHolder.getContext().getAuthentication().getDetails();
-//        model.addAttribute("authorities", authorities);
-//        model.addAttribute("details", details);
-//        return "hello";
-//    }
-
- 
 
     @GetMapping("/sign-up")
     public String singUp(Model model) {
         model.addAttribute("user", new User());
         return "sign-up";
     }
+
     @PostMapping("/register")
     public String register(User user) {
         userService.createAndAddUser(user);
@@ -51,9 +57,9 @@ public class SignUpController {
     }
 
     @GetMapping("/logout")
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
+        if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "/welcome-page"; //You can redirect wherever you want, but generally it's a good practice to show login screen again.

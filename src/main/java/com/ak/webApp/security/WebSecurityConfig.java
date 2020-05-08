@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    private UserDetailsServiceImpl userDetailsService ;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     public WebSecurityConfig(UserDetailsServiceImpl userDetailsService) {
@@ -30,10 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
-//    @Bean
-//    public LogoutSuccessHandler logoutSuccessHandler() {
-//        return new CustomLogoutSuccessHandler();
-//    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -41,11 +38,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().disable();
         http.authorizeRequests()
                 .antMatchers("/users").hasAuthority("ROLE_USER")
-               .antMatchers("/allExpenses").hasAuthority("ROLE_USER")
+                .antMatchers("/allExpenses").hasAuthority("ROLE_USER")
                 .and()
                 .formLogin().defaultSuccessUrl("/allExpenses")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/welcome-page?logout");
+                .logoutSuccessHandler(new CustomLogoutSuccessHandler())
+                .invalidateHttpSession(true);
     }
 }

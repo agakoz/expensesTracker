@@ -21,12 +21,7 @@ public class UserController {
         this.userRepository = userRepository;
        // this.user= new User();
     }
-    @GetMapping("/welcome-page")
-    public String welcomePage(Model model) {
-        List<User> users = userRepository.findAll();
-        model.addAttribute("users", users);
-        return "welcome-page";
-    }
+
 
 
     @GetMapping(path = "/users")
