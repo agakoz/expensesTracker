@@ -4,33 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{tss.pageTitle}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+<form id="wp-form-register" th:action="@{/logout}" method="get" class="d-inline-block" style="float: right">
+    <input type="button" onclick="submit()" class="btn btn-light" value="wyloguj"/>
+</form>
+<!--<a id="logout" href="#" th:href="@{/logout}" style="float: right">Logout</a>-->
 
-<h4 th:text="#{tss.author}"></h4>
-<h3 th:text="#{tss.appTitle}"></h3>
 <div th:with="userName=${username},id=${userId}">
+    <p class="display-4">
+        Witaj <span th:text="${userName}"/>!
+    </p>
     <p>
-        You have logged in as: "<span th:text="${userName}"/>"
-        </br>
-        Your id is: <span th:text="${id}"/>
+        Twoje id pomnożone razy 10 to <span th:text="${id}*10"/>
     </p>
 </div>
-<table>
-    <thead>Expenses</thead>
+<p class="display-3">Twoje wydatki</p>
+<table class="table table-striped">
+
     <thead>
     <tr>
-        <th> Date</th>
-        <th> Description</th>
-        <th> Category</th>
-        <th> Amount</th>
-        <th> Type</th>
+        <th scope="col"> Data</th>
+        <th scope="col"> Opis</th>
+        <th scope="col"> Kategoria</th>
+        <th scope="col"> Wartosc</th>
+        <th scope="col"> Typ</th>
     </tr>
     </thead>
     <tbody>
     <tr th:if="${expensesMap.isEmpty()}">
-        <td> No</td>
-        <td>Expenses</td>
+        <td> Brak</td>
+        <td>Wydatkow</td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr th:each="expense : ${expensesMap}">
         <td th:each="elem: ${expense.getValue()}">
@@ -41,17 +50,46 @@
     </tbody>
 </table>
 
+<div class="" style="width: 400px; margin-left: 40px">
 <form th:action="@{/add-expense}" th:object="${newExpense}" method="post">
-    <p>Date of the expense: <input type="date" th:field="*{date}"></p>
-    <p>Description of the expense: <input type="text" th:field="*{description}"></p>
-    <p>Category of the expense: <input type="text" th:field="*{category}"></p>
-    <p>Value of the expense: <input type="number" step="0.01" th:field="*{amount}"></p>
-    <p>Type of the expense: <input type="text" th:field="*{type}"></p>
-
-    <p><input type="submit" value="ADD"></p>
-
+    <div class="form-group row">
+        <label for="dateInput">Data wydatku</label>
+        <input type="date" class="form-control" id="dateInput" th:field="*{date}">
+    </div>
+    <div class="form-group row">
+        <label for="descriptionInput">Opis</label>
+        <input type="text" class="form-control" id="descriptionInput"  th:field="*{description}">
+    </div>
+    <div class="form-group row">
+        <label for="categoryInput">Kategoria</label>
+        <select class="form-control" id="categoryInput" th:field="*{category}">
+            <option th:value="#{tss.cat1}" th:text="#{tss.cat1}"></option>
+            <option th:value="#{tss.cat2}" th:text="#{tss.cat2}"></option>
+            <option th:value="#{tss.cat3}" th:text="#{tss.cat3}"></option>
+            <option th:value="#{tss.cat4}" th:text="#{tss.cat4}"></option>
+            <option th:value="#{tss.cat5}" th:text="#{tss.cat5}"></option>
+            <option th:value="#{tss.cat6}" th:text="#{tss.cat6}"></option>
+            <option th:value="#{tss.cat7}" th:text="#{tss.cat7}"> </option>
+            <option th:value="#{tss.cat8}" th:text="#{tss.cat8}"></option>
+        </select>
+    </div>
+    <div class="form-group row">
+        <label for="amountInput">Wartosc</label>
+        <input class="form-control" id="amountInput" type="number" step="0.01" th:field="*{amount}">
+    </div>
+        <div class="form-group row">
+            <label for="typeInput">Typ</label>
+            <select class="form-control" id="typeInput" th:field="*{type}">
+                <option th:value="#{tss.type1}" th:text="#{tss.type1}"></option>
+                <option th:value="#{tss.type2}" th:text="#{tss.type2}"></option>
+                <option th:value="#{tss.type3}" th:text="#{tss.type3}"></option>
+            </select>
+        </div>
+<!--        <input class="btn btn-primary" type="submit" value="ADD">-->
+    <input type="button" onclick="submit()" class="btn btn-primary" value="Dodaj"/>
 </form>
-<!--<span class="glyphicon glyphicon-log-out"></span>-->
-<a href="#" th:href="@{/logout}">Logout</a>
+<span class="glyphicon glyphicon-log-out"></span>
+</div>
+
 </body>
 </html>

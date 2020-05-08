@@ -15,4 +15,5 @@ public class DefaultViewConfig implements WebMvcConfigurer {
 
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
+
 }

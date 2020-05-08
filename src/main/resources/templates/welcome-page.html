@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{tss.pageTitle}"></title>
+<!--    bootstrap-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--    <link rel="stylesheet"  href="css/welcome-page.css">-->
 </head>
 <body>
 
-<p th:if="${logout}" >You have been logged out</p>
+<div id="wp-logout" class="logoutMessage, alert alert-danger" role="alert" th:if="${logout}" th:text="#{tss.logoutMessage}"></div>
 
-<h5 th:text="#{tss.author}"></h5>
-<h1 th:text="#{tss.appName}"></h1>
+<!--<h6 id="wp-author" class="authorInfo, welcome, text-muted" th:text="#{tss.author}"></h6>-->
+<div class="jumbotron">
+<h1 id="wp-appName" class="display-4" th:text="#{tss.appName}"></h1>
+<p id="wp-welcome" class="lead" th:text="#{tss.appTitle}"></p>
+<hr class="my-4">
+ <p th:text="#{tss.test-user}"> </p>
 
-<div>
-    <p>default user: user/user </p>
+    <div id="loginInfo" >
+        <p class="lead">Zaloguj się lub załóż konto, aby móc korzystać z aplikacji</p>
+        <form id="wp-form-login" th:action="@{/allExpenses}" method="get" class="d-inline-block">
+
+            <input type="button" onclick="submit()" class="btn btn-primary" value="zaloguj"/>
+        </form>
+        <form id="wp-form-register" th:action="@{/sign-up}" method="get" class="d-inline-block">
+
+            <input type="button" onclick="submit()" class="btn btn-primary" value="zarejestruj"/>
+        </form>
+    </div>
 </div>
 
-<form th:action="@{/allExpenses}" method="get">
-    <input type="submit" value="login"/>
-</form>
-<form th:action="@{/sign-up}" method="get">
-    <input type="submit" value="sign-up"/>
-</form>
 </body>
 </html>

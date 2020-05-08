@@ -1,22 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>SignUp</title>
+
+    <!--    bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 </head>
 <body>
-<h1>Register</h1>
-<form th:action="@{/register}" method="post">
-    Login:
-    <input type="text" name="username">
-    Password:
-    <input type="text" name="password">
+<!--<h1>Zarejestruj się</h1>-->
+<div class="container" style="width: 500px">
+    <form th:action="@{/register}" method="post" class="form-signin">
+            <h2 class="form-signin-heading">Zarejestruj się</h2>
+            <label for="username" class="sr-only">Nazwa Uzytkownika</label>
+            <input id="username" type="text" class="form-control" required="" autofocus=""
+                   name="username" placeholder="Nazwa uzytkownika">
 
-    <input type="submit" value="sing up!">
-</form>
-<p>I already have an account</p>
-<a href="#" th:href="@{/login}">sign in!</a>
+        <p></p>
+        <label for="password" class="sr-only">Haslo</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Haslo" required="">
+        <p></p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+            <p></p>
+        <h5 class="form-signin-heading">lub jeżeli masz już konto,
+            <a href="#" th:href="@{/login}">zaloguj się!</a></h5>
+    </form>
+</div>
+
+
+
 
 </body>
 </html>
