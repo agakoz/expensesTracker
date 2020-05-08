@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -29,6 +30,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
+//    @Bean
+//    public LogoutSuccessHandler logoutSuccessHandler() {
+//        return new CustomLogoutSuccessHandler();
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -38,6 +43,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users").hasAuthority("ROLE_USER")
                .antMatchers("/allExpenses").hasAuthority("ROLE_USER")
                 .and()
-                .formLogin().defaultSuccessUrl("/allExpenses");
+                .formLogin().defaultSuccessUrl("/allExpenses")
+                .and()
+                .logout()
+                .logoutSuccessUrl("/welcome-page?logout");
     }
 }

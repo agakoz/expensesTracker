@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -48,8 +49,9 @@
     <p>Type of the expense: <input type="text" th:field="*{type}"></p>
 
     <p><input type="submit" value="ADD"></p>
+
 </form>
-
-
+<!--<span class="glyphicon glyphicon-log-out"></span>-->
+<a href="#" th:href="@{/logout}">Logout</a>
 </body>
 </html>

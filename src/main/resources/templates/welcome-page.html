@@ -5,18 +5,20 @@
     <title th:text="#{tss.pageTitle}"></title>
 </head>
 <body>
-    <h5 th:text="#{tss.author}"></h5>
-    <h1 th:text="#{tss.appName}"></h1>
 
-    <div>
-        <p>default user: user/user </p>
-    </div>
 
-    <form th:action="@{/allExpenses}" method="get">
-        <input type="submit" value="login"/>
-    </form>
-    <form th:action="@{/sign-up}" method="get">
-        <input type="submit" value="sign-up"/>
-    </form>
+<h5 th:text="#{tss.author}"></h5>
+<h1 th:text="#{tss.appName}"></h1>
+
+<div>
+    <p>default user: user/user </p>
+</div>
+
+<form th:action="@{/allExpenses}" method="get">
+    <input type="submit" value="login"/>
+</form>
+<form th:action="@{/sign-up}" method="get">
+    <input type="submit" value="sign-up"/>
+</form>
 </body>
 </html>
