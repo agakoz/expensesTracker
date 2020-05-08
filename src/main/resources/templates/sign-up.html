@@ -13,7 +13,7 @@
 <!--<h1>Zarejestruj się</h1>-->
 <div class="container" style="width: 500px">
     <form th:action="@{/register}" method="post" class="form-signin">
-            <h2 class="form-signin-heading">Zarejestruj się</h2>
+            <h2 class="form-signin-heading">Dodaj konto</h2>
             <label for="username" class="sr-only">Nazwa Uzytkownika</label>
             <input id="username" type="text" class="form-control" required="" autofocus=""
                    name="username" placeholder="Nazwa uzytkownika">
@@ -22,7 +22,7 @@
         <label for="password" class="sr-only">Haslo</label>
         <input type="password" id="password" name="password" class="form-control" placeholder="Haslo" required="">
         <p></p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">zarejestruj</button>
             <p></p>
         <h5 class="form-signin-heading">lub jeżeli masz już konto,
             <a href="#" th:href="@{/login}">zaloguj się!</a></h5>
