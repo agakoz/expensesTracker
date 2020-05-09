@@ -31,7 +31,6 @@ public class MainController {
     }
 
     @GetMapping("/welcome-page")
-
     public String welcomePage( @RequestParam(value = "logout", required = false) String logout, Model model) {
 
         List<User> users = userRepository.findAll();
@@ -62,7 +61,12 @@ public class MainController {
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "/welcome-page"; //You can redirect wherever you want, but generally it's a good practice to show login screen again.
+        return "redirect:/welcome-page"; //You can redirect wherever you want, but generally it's a good practice to show login screen again.
     }
 
+    @GetMapping("/error")
+    public String error(Model model) {
+
+        return "error";
+    }
 }
