@@ -11,7 +11,7 @@
     <groupId>com.ak</groupId>
     <artifactId>WebApplication4AK</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>tss4</name>
+    <name>tss5</name>
     <description>Application developed as a part of tss course on Silesian University</description>
     <packaging>war</packaging>
 

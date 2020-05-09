@@ -37,10 +37,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.headers().disable();
         http.authorizeRequests()
-                .antMatchers("/users").hasAuthority("ROLE_USER")
-                .antMatchers("/allExpenses").hasAuthority("ROLE_USER")
+                .antMatchers("/users/**").hasAuthority("ROLE_USER")
+                .antMatchers("/expenses/**").hasAuthority("ROLE_USER")
                 .and()
-                .formLogin().defaultSuccessUrl("/allExpenses")
+                .formLogin().defaultSuccessUrl("/expenses")
                 .and()
                 .logout()
                 .logoutSuccessHandler(new CustomLogoutSuccessHandler())

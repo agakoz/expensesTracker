@@ -11,7 +11,7 @@ public class DefaultViewConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("redirect:/welcome-page");
-        //registry.addViewController("/error").setViewName("redirect:/not-found");
+        registry.addViewController("/error").setViewName("redirect:/not-found");
 
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }

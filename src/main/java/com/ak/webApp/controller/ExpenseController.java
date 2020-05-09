@@ -34,7 +34,7 @@ public class ExpenseController {
         this.expenseRepository = expenseRepository;
     }
 
-    @GetMapping("/allExpenses")
+    @GetMapping("/expenses")
     public String getAllExpenses(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -86,7 +86,7 @@ public class ExpenseController {
         newExpense.setExpenseId(getNewId());
 
         expenseRepository.save(newExpense);
-        return "redirect:/allExpenses";
+        return "redirect:/expenses";
     }
 
 

@@ -3,9 +3,7 @@ package com.ak.webApp.controller;
 import com.ak.webApp.models.User;
 import com.ak.webApp.repository.UserRepository;
 import com.ak.webApp.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.Principal;
-import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -49,11 +45,7 @@ public class MainController {
         return "sign-up";
     }
 
-    @PostMapping("/register")
-    public String register(User user) {
-        userService.createAndAddUser(user);
-        return "redirect:/allExpenses";
-    }
+
 
     @GetMapping("/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
@@ -64,9 +56,9 @@ public class MainController {
         return "redirect:/welcome-page"; //You can redirect wherever you want, but generally it's a good practice to show login screen again.
     }
 
-    @GetMapping("/error")
+    @GetMapping("/not-found")
     public String error(Model model) {
 
-        return "error";
+        return "not-found";
     }
 }
