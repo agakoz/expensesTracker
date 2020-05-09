@@ -5,15 +5,18 @@
     <title>SignUp</title>
 
     <!--    bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
 </head>
-<body>
+<body style="background-color: #e7e7e7">
 <!--<h1>Zarejestruj się</h1>-->
-<div class="container" style="width: 500px">
+<form id="sign-up-go-to-welcome-button" th:action="@{/welcome-page}" method="get" class="d-inline-block" style="float: right">
+    <input type="button" onclick="submit()" class="btn btn-light" value="wróc do strony głownej"/>
+</form>
+<div class="container" >
     <form th:action="@{/register}" method="post" class="form-signin">
             <h2 class="form-signin-heading">Dodaj konto</h2>
+        <p></p>
             <label for="username" class="sr-only">Nazwa Uzytkownika</label>
             <input id="username" type="text" class="form-control" required="" autofocus=""
                    name="username" placeholder="Nazwa uzytkownika">
