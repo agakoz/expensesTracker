@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
+<body >
 <form id="logout-button" th:action="@{/logout}" method="get" class="d-inline-block" style="float: right">
     <input type="button" onclick="submit()" class="btn btn-light" value="wyloguj"/>
 </form>
-<!--<a id="logout" href="#" th:href="@{/logout}" style="float: right">Logout</a>-->
 
 <div th:with="userName=${username},id=${userId}">
     <p class="display-4">
@@ -22,7 +21,7 @@
     </p>
 </div>
 <p class="display-3">Twoje wydatki</p>
-<table class="table table-striped">
+<table  class="table table-striped">
 
     <thead>
     <tr>
@@ -52,6 +51,8 @@
 
 <div class="" style="width: 400px; margin-left: 40px">
 <form th:action="@{/add-expense}" th:object="${newExpense}" method="post">
+    <h2 class="form-signin-heading display-4">Dodaj wydatek</h2>
+    <p></p>
     <div class="form-group row">
         <label for="dateInput">Data wydatku</label>
         <input type="date" class="form-control" id="dateInput" th:field="*{date}">

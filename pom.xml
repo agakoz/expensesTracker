@@ -18,7 +18,7 @@
     <properties>
         <java.version>11</java.version>
 
-        <start-class>com.ak.webApp.ThymeleafApplication</start-class>
+        <start-class>com.ak.webApp.ExpenseTracker</start-class>
     </properties>
     <dependencies>
 
