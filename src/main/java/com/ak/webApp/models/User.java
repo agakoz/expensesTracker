@@ -8,8 +8,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
@@ -20,19 +21,19 @@ import java.util.Objects;
 @Data
 public class User implements UserDetails {
     @Id
-    @Column
+    @Column(name="user_id", nullable = false)
     private int userId;
 
     @Column
     @NonNull
- //   @Size(min=3, max=10)
     private String username;
 
     @NonNull
-  //  @Size(min=3, max=15)
-    @Column
+    @Column(nullable = false, length = 255)
     private String password;
-    @Column
+
+    @NonNull
+    @Column(nullable = false, length = 255)
     private String role;
 
     @Override

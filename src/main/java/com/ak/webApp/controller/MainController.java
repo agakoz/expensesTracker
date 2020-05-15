@@ -8,7 +8,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,17 +28,15 @@ public class MainController {
     }
 
     @GetMapping("/welcome-page")
-    public String welcomePage( @RequestParam(value = "logout", required = false) String logout, Model model) {
+    public String welcomePage(@RequestParam(value = "logout", required = false) String logout, Model model) {
 
         List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
-        if(null != logout){
+        if (null != logout) {
             model.addAttribute("logout", "You have been logged out");
         }
         return "welcome-page";
     }
-
-
 
 
     @GetMapping("/sign-up")
@@ -45,7 +44,6 @@ public class MainController {
         model.addAttribute("user", new User());
         return "sign-up";
     }
-
 
 
     @GetMapping("/logout")

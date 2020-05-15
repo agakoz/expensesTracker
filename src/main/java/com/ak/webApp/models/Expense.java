@@ -3,7 +3,6 @@ package com.ak.webApp.models;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -37,7 +36,6 @@ public class Expense {
 
     @Column
     @NonNull
-  //  @Positive
     private BigDecimal amount;
 
     @Column
@@ -46,6 +44,7 @@ public class Expense {
     private String type;
 
     @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private User user;
 
 }

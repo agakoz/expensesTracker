@@ -3,7 +3,6 @@ package com.ak.webApp.controller;
 import com.ak.webApp.models.Expense;
 import com.ak.webApp.models.User;
 import com.ak.webApp.repository.ExpenseRepository;
-import com.ak.webApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +37,7 @@ public class ExpenseController {
     public String getAllExpenses(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        int currentUserId ;
+        int currentUserId;
         String username;
         if (principal instanceof UserDetails) {
             currentUserId = ((User) (principal)).getUserId();
@@ -78,7 +77,6 @@ public class ExpenseController {
     public String addExpense(@ModelAttribute Expense newExpense) {
 
 
-
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         newExpense.setUser((User) (principal));
 
@@ -90,15 +88,10 @@ public class ExpenseController {
     }
 
 
-
     private int getNewId() {
         Expense lastExpense = expenseRepository.findAll().stream().reduce((a, b) -> b).orElse(null);
         return (lastExpense != null) ? (lastExpense.getExpenseId() + 1) : 1;
     }
-
-
-
-
 
 
     @GetMapping("/expenses/{userId}")
