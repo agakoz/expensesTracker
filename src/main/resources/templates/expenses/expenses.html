@@ -13,14 +13,14 @@
 </form>
 
 <div th:with="userName=${username},id=${userId}">
-    <p class="display-4">
+    <h5>
         Witaj <span th:text="${userName}"/>!
-    </p>
+    </h5>
     <p>
         Twoje id pomnożone razy 10 to <span th:text="${id}*10"/>
     </p>
 </div>
-<p class="display-3">Twoje wydatki</p>
+<p class="display-4">Twoje wydatki</p>
 <table  class="table table-striped">
 
     <thead>
@@ -51,7 +51,7 @@
 
 <div class="" style="width: 400px; margin-left: 40px">
 <form th:action="@{/add-expense}" th:object="${newExpense}" method="post">
-    <h2 class="form-signin-heading display-4">Dodaj wydatek</h2>
+    <h4 class="form-signin-heading ">Dodaj wydatek</h4>
     <p></p>
     <div class="form-group row">
         <label for="dateInput">Data wydatku</label>
