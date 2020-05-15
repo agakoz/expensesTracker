@@ -39,6 +39,7 @@ public class MainController {
 
 
 
+
     @GetMapping("/sign-up")
     public String singUp(Model model) {
         model.addAttribute("user", new User());
