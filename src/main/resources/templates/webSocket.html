@@ -22,9 +22,9 @@
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="connect">WebSocket connection:</label>
-                    <button id="connect" class="btn btn-success" type="submit">Connect</button>
-                    <button id="disconnect" class="btn btn-danger" type="submit" disabled="disabled">Disconnect
+                    <label for="connect">Polaczenie WebSocket:</label>
+                    <button id="connect" class="btn btn-success" type="submit">Polacz</button>
+                    <button id="disconnect" class="btn btn-danger" type="submit" disabled="disabled">Rozlacz
                     </button>
                 </div>
             </form>
@@ -32,12 +32,14 @@
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="name">What is your name?</label>
-                    <input type="text" id="name" class="form-control" placeholder="Your name here...">
-                    <label for="msg">Say something</label>
-                    <input type="text" id="msg" class="form-control" placeholder="Your message here...">
+                    <label for="name">Podaj imie: </label>
+                    <input type="text" id="name" class="form-control" placeholder="tutaj wpisz imie...">
+                    <br>
+                    <label for="msg">Powiedz cos: </label>
+                    <input type="text" id="msg" class="form-control" placeholder="Twoja wiadomosc...">
                 </div>
-                <button id="send" class="btn btn-primary" type="submit">Send</button>
+                <br>
+                <button id="send" class="btn btn-primary" type="submit">Wyslij</button>
             </form>
         </div>
     </div>
@@ -46,7 +48,7 @@
             <table id="conversation" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Greetings</th>
+                    <th>Pogaduchy</th>
                 </tr>
                 </thead>
                 <tbody id="greetings">
