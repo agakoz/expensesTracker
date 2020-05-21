@@ -32,6 +32,15 @@
 
             <input type="button" onclick="submit()" class="btn btn-primary" value="chat"/>
         </form>
+        <form id="wp-form-rest-expenses" th:action="@{/rest/expenses}" method="get" class="d-inline-block">
+
+            <input type="button" onclick="submit()" class="btn btn-primary" value="json Expenses"/>
+        </form>
+
+        <form id="wp-form-rest-users" th:action="@{/rest/users}" method="get" class="d-inline-block">
+
+            <input type="button" onclick="submit()" class="btn btn-primary" value="json Users"/>
+        </form>
     </div>
 </div>
 

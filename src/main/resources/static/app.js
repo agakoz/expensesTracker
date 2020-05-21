@@ -14,7 +14,13 @@ function setConnected(connected) {
 }
 
 function connect() {
-    var socket = new SockJS('/gs-guide-websocket');
+    // alert("The URL of this page is: " + window.location.href);
+    var getUrl = window.location;
+    var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    // alert("The base URL is: " + baseUrl);
+    var socketUrl = baseUrl + '/gs-guide-websocket'
+    var socket = new SockJS(socketUrl);
+    // var socket = new SockJS('/gs-guide-websocket');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         setConnected(true);

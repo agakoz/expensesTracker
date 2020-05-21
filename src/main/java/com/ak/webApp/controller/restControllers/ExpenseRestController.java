@@ -1,4 +1,4 @@
-package com.ak.webApp.config.restControllers;
+package com.ak.webApp.controller.restControllers;
 
 import com.ak.webApp.models.Expense;
 import com.ak.webApp.repository.ExpenseRepository;
@@ -26,9 +26,9 @@ public class ExpenseRestController {
         return expenseRepository.findAll();
     }
 
-    @GetMapping("/rest/expenses/{id}")
-    public List<Expense> getByUserId(@PathVariable int id) {
-        return expenseRepository.findByUserId(id);
+    @GetMapping("/rest/expenses/{userId}")
+    public List<Expense> getByUserId(@PathVariable int userId) {
+        return expenseRepository.findByUserId(userId);
     }
 
 }

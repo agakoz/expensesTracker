@@ -1,4 +1,4 @@
-package com.ak.webApp.config.restControllers;
+package com.ak.webApp.controller.restControllers;
 
 import com.ak.webApp.models.User;
 import com.ak.webApp.repository.UserRepository;
@@ -28,8 +28,14 @@ public class UserRestController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/rest/users/{id}")
-    public Optional<User> getUserById(@PathVariable int id) {
-        return userRepository.findByUserId(id);
+//    @GetMapping("/rest/users/{id}")
+//    public Optional<User> getUserByUserId (@PathVariable int id) {
+//
+//        return userRepository.findByUserId(id);
+//    }
+
+    @GetMapping("/rest/users/{username}")
+    public Optional<User> findByUsername(@PathVariable String username) {
+        return userRepository.findByUsername(username);
     }
 }
