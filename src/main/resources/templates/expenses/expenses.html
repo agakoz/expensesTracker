@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body >
+<body>
 <form id="logout-button" th:action="@{/logout}" method="get" class="d-inline-block" style="float: right">
     <input type="button" onclick="submit()" class="btn btn-light" value="wyloguj"/>
 </form>
@@ -21,7 +21,7 @@
     </p>
 </div>
 <p class="display-4">Twoje wydatki</p>
-<table  class="table table-striped">
+<table class="table table-striped">
 
     <thead>
     <tr>
@@ -30,6 +30,8 @@
         <th scope="col"> Kategoria</th>
         <th scope="col"> Wartosc</th>
         <th scope="col"> Typ</th>
+        <th scope="col"> Operacja</th>
+
     </tr>
     </thead>
     <tbody>
@@ -44,40 +46,57 @@
         <td th:each="elem: ${expense.getValue()}">
             <span th:text="${elem}"></span>
         </td>
+        <td>
+            <form th:action="@{expenses/edit/{expenseId}(expenseId = ${expense.getKey()})}" method="post"
+                  class="d-inline-block">
+                <input type="button" onclick="submit()" class="btn btn-warning" value="edytuj"/>
+            </form>
+            <form th:action="@{expenses/delete/{expenseId}(expenseId = ${expense.getKey()})}" method="post"
+                  class="d-inline-block">
+                <input type="button" onclick="submit()" class="btn btn-danger" value="usuń"/>
+            </form>
+
+            <!--            <a class="btn btn-warning btn-xs">-->
+            <!--                <router-link :to="{name: 'product-edit', params: {product_id: product.id}}">Edytuj</router-link>-->
+            <!--            </a>-->
+            <!--            <a class="btn btn-danger btn-xs">-->
+            <!--                <router-link :to="{name: 'product-delete', params: {product_id: product.id}}">Usuń</router-link>-->
+            <!--            </a>-->
+        </td>
 
     </tr>
     </tbody>
 </table>
 
 <div class="" style="width: 400px; margin-left: 40px">
-<form th:action="@{/add-expense}" th:object="${newExpense}" method="post">
-    <h4 class="form-signin-heading ">Dodaj wydatek</h4>
-    <p></p>
-    <div class="form-group row">
-        <label for="dateInput">Data wydatku</label>
-        <input type="date" class="form-control" id="dateInput" th:field="*{date}">
-    </div>
-    <div class="form-group row">
-        <label for="descriptionInput">Opis</label>
-        <input type="text" class="form-control" id="descriptionInput"  th:field="*{description}">
-    </div>
-    <div class="form-group row">
-        <label for="categoryInput">Kategoria</label>
-        <select class="form-control" id="categoryInput" th:field="*{category}">
-            <option th:value="#{tss.cat1}" th:text="#{tss.cat1}"></option>
-            <option th:value="#{tss.cat2}" th:text="#{tss.cat2}"></option>
-            <option th:value="#{tss.cat3}" th:text="#{tss.cat3}"></option>
-            <option th:value="#{tss.cat4}" th:text="#{tss.cat4}"></option>
-            <option th:value="#{tss.cat5}" th:text="#{tss.cat5}"></option>
-            <option th:value="#{tss.cat6}" th:text="#{tss.cat6}"></option>
-            <option th:value="#{tss.cat7}" th:text="#{tss.cat7}"> </option>
-            <option th:value="#{tss.cat8}" th:text="#{tss.cat8}"></option>
-        </select>
-    </div>
-    <div class="form-group row">
-        <label for="amountInput">Wartosc</label>
-        <input class="form-control" id="amountInput" type="number" step="0.01" th:field="*{amount}">
-    </div>
+    <form th:action="@{/add-expense}" th:object="${newExpense}" method="post">
+        <h4 class="form-signin-heading ">Dodaj wydatek</h4>
+        <p></p>
+        <div class="form-group row">
+            <label for="dateInput">Data wydatku</label>
+            <input type="date" class="form-control" id="dateInput" th:field="*{date}">
+        </div>
+        <div class="form-group row">
+            <label for="descriptionInput">Opis</label>
+            <input type="text" class="form-control" id="descriptionInput" th:field="*{description}">
+        </div>
+        <div class="form-group row">
+            <label for="categoryInput">Kategoria</label>
+            <select class="form-control" id="categoryInput" th:field="*{category}">
+                <option th:value="#{tss.cat1}" th:text="#{tss.cat1}"></option>
+                <option th:value="#{tss.cat2}" th:text="#{tss.cat2}"></option>
+                <option th:value="#{tss.cat3}" th:text="#{tss.cat3}"></option>
+                <option th:value="#{tss.cat4}" th:text="#{tss.cat4}"></option>
+                <option th:value="#{tss.cat5}" th:text="#{tss.cat5}"></option>
+                <option th:value="#{tss.cat6}" th:text="#{tss.cat6}"></option>
+                <option th:value="#{tss.cat7}" th:text="#{tss.cat7}"></option>
+                <option th:value="#{tss.cat8}" th:text="#{tss.cat8}"></option>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label for="amountInput">Wartosc</label>
+            <input class="form-control" id="amountInput" type="number" step="0.01" th:field="*{amount}">
+        </div>
         <div class="form-group row">
             <label for="typeInput">Typ</label>
             <select class="form-control" id="typeInput" th:field="*{type}">
@@ -86,10 +105,10 @@
                 <option th:value="#{tss.type3}" th:text="#{tss.type3}"></option>
             </select>
         </div>
-<!--        <input class="btn btn-primary" type="submit" value="ADD">-->
-    <input type="button" onclick="submit()" class="btn btn-primary" value="Dodaj"/>
-</form>
-<span class="glyphicon glyphicon-log-out"></span>
+        <!--        <input class="btn btn-primary" type="submit" value="ADD">-->
+        <input type="button" onclick="submit()" class="btn btn-primary" value="Dodaj"/>
+    </form>
+    <span class="glyphicon glyphicon-log-out"></span>
 </div>
 
 </body>

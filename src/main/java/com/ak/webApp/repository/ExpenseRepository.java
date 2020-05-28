@@ -10,4 +10,6 @@ import java.util.List;
 public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
     @Query("SELECT exp from Expense exp where exp.user.userId =:userId")
     List<Expense> findByUserId(@Param("userId") int userId);
+
+
 }

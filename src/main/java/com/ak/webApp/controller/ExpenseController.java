@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Controller
@@ -59,7 +56,7 @@ public class ExpenseController {
         model.addAttribute("userId", currentUserId);
         model.addAttribute("expensesMap", expensesMap);
         model.addAttribute("newExpense", new Expense());
-        return "/expenses/expenses";
+        return "expenses/expenses";
     }
 
     private List<Object> getExpenseData(Expense expense) {
@@ -110,7 +107,42 @@ public class ExpenseController {
         return messageSource;
     }
 
+    @PostMapping("/expenses/delete/{expenseId}")
+    public String deleteExpenseById(@PathVariable int expenseId) {
+        expenseRepository.deleteById(expenseId);
+        return "redirect:/expenses";
+    }
 
+    @PostMapping("/expenses/edit/{expenseId}")
+    public String editExpense(@PathVariable int expenseId, Model model) {
+        Optional<Expense> expense = expenseRepository.findById(expenseId);
+
+        System.out.println(expense.get().toString());
+        if (expense.isPresent()) {
+            Expense exp = expense.get();
+//            expense.get().setAvailable(true);
+            model.addAttribute("expense", exp);
+//            model.addAttribute("date", expense.get().getDate());
+//            model.addAttribute("description", expense.get().getDescription());
+//            model.addAttribute("category", expense.get().getCategory());
+//            model.addAttribute("amount", expense.get().getAmount());
+//            model.addAttribute("type", expense.get().getType());
+
+
+        }
+        return "expenses/edit";
+    }
+
+    @PostMapping("/expenses/update-expense")
+    public String updateExpense(Expense changedExpense, Model model) {
+
+
+            System.out.println(changedExpense.toString());
+//            System.out.println(expense.get().toString());
+        expenseRepository.save(changedExpense);
+
+        return "redirect:/expenses";
+    }
 }
 
 

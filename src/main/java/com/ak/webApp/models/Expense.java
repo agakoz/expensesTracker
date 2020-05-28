@@ -47,4 +47,5 @@ public class Expense {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private User user;
 
+
 }
