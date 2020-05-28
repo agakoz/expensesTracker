@@ -97,6 +97,12 @@ public class ExpenseController {
         return expenseRepository.findByUserId(userId);
     }
 
+    @GetMapping("/expenses/add")
+    public String add (Model model) {
+        model.addAttribute("newExpense", new Expense());
+        return "expenses/add";
+    }
+
     @Bean
     public MessageSource messageSource() {
         final ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();

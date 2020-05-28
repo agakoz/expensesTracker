@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{tss.pageTitle}"></title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+</head>
+<body>
+<form id="sign-up-go-to-expenses" th:action="@{/expenses}" method="get" class="d-inline-block" style="float: left">
+    <input type="button" onclick="submit()" class="btn btn-light" value="wróc"/>
+</form>
+<div class="container" style=" width:650px">
+    <form th:action="@{/add-expense}" th:object="${newExpense}" method="post">
+        <h2 class="form-signin-heading">Dodaj wydatek</h2>
+        <p></p>
+        <div class="form-group row">
+            <label for="dateInput" class="col-sm-3 col-form-label">Data wydatku</label>
+            <div class="col-sm-9">
+                <input type="date" class="form-control" id="dateInput" th:field="*{date}" required/>
+            </div>
+        </div>
+        <p></p>
+        <div class="form-group row">
+            <label for="descriptionInput" class="col-sm-3 col-form-label">Opis</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="descriptionInput" th:field="*{description}" th:required/>
+            </div>
+        </div>
+        <p></p>
+        <div class="form-group row">
+            <label for="categoryInput" class="col-sm-3 col-form-label">Kategoria</label>
+            <div class="col-sm-9">
+                <select class="form-control" id="categoryInput" th:field="*{category}" required="required" >
+                    <option th:value="#{tss.cat1}" th:text="#{tss.cat1}"></option>
+                    <option th:value="#{tss.cat2}" th:text="#{tss.cat2}"></option>
+                    <option th:value="#{tss.cat3}" th:text="#{tss.cat3}"></option>
+                    <option th:value="#{tss.cat4}" th:text="#{tss.cat4}"></option>
+                    <option th:value="#{tss.cat5}" th:text="#{tss.cat5}"></option>
+                    <option th:value="#{tss.cat6}" th:text="#{tss.cat6}"></option>
+                    <option th:value="#{tss.cat7}" th:text="#{tss.cat7}"></option>
+                    <option th:value="#{tss.cat8}" th:text="#{tss.cat8}"></option>
+                </select>
+            </div>
+        </div>
+        <p></p>
+        <div class="form-group row">
+
+            <label for="amountInput" class="col-sm-3 col-form-label">Wartosc</label>
+            <div class="col-sm-9">
+                <input class="form-control" id="amountInput" type="number" step="0.01" th:field="*{amount}" required="required"/>
+            </div>
+        </div>
+        <p></p>
+        <div class="form-group row">
+            <label for="typeInput" class="col-sm-3 col-form-label">Typ</label>
+            <div class="col-sm-9">
+                <select class="form-control" id="typeInput" th:field="*{type}" required="required" >
+                    <option th:value="#{tss.type1}" th:text="#{tss.type1}"></option>
+                    <option th:value="#{tss.type2}" th:text="#{tss.type2}"></option>
+                    <option  th:value="#{tss.type3}" th:text="#{tss.type3}"></option>
+                </select>
+            </div>
+
+        </div>
+        <p></p>
+        <!--        <input class="btn btn-primary" type="submit" value="ADD">-->
+        <input type="button" onclick="submit()" class="btn btn-primary" value="Dodaj"/>
+    </form>
+    <span class="glyphicon glyphicon-log-out"></span>
+</div>
+</body>
+</html>
