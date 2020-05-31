@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.*;
@@ -31,15 +32,18 @@ public class ExpenseController {
     }
 
     @GetMapping("/expenses")
-    public String getAllExpenses(Model model) {
+    public String getAllExpenses(Model model, HttpSession session) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         int currentUserId;
         String username;
+        User currentUser;
         if (principal instanceof UserDetails) {
+            currentUser = (User)principal;
             currentUserId = ((User) (principal)).getUserId();
             username = ((User) (principal)).getUsername();
         } else {
+            currentUser = null;
             currentUserId = -1;
             username = principal.toString();
         }
@@ -56,6 +60,7 @@ public class ExpenseController {
         model.addAttribute("userId", currentUserId);
         model.addAttribute("expensesMap", expensesMap);
         model.addAttribute("newExpense", new Expense());
+        session.setAttribute("currentUser", currentUser);
         return "expenses/expenses";
     }
 

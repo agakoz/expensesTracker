@@ -8,40 +8,55 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-<header style=" box-shadow: 0px 0px 10px slategray ">
-<form id="logout-button" th:action="@{/logout}" method="get" class="d-inline-block" style="float: right">
-    <button type="button" onclick="submit()" class="btn btn-light" >
-        wyloguj
-        <svg style="font-size: 130% " class="bi bi-box-arrow-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M11.646 11.354a.5.5 0 0 1 0-.708L14.293 8l-2.647-2.646a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
-            <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
-            <path fill-rule="evenodd" d="M2 13.5A1.5 1.5 0 0 1 .5 12V4A1.5 1.5 0 0 1 2 2.5h7A1.5 1.5 0 0 1 10.5 4v1.5a.5.5 0 0 1-1 0V4a.5.5 0 0 0-.5-.5H2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-1.5a.5.5 0 0 1 1 0V12A1.5 1.5 0 0 1 9 13.5H2z"/>
-        </svg>
+<header style=" box-shadow: 0px 0px 10px slategray; padding: 10px; margin-bottom: 15px ">
+    <form id="logout-button" th:action="@{/logout}" method="get" class="d-inline-block" style="float: right">
+        <button type="button" onclick="submit()" class="btn btn-light">
+            <svg style="font-size: 130% " class="bi bi-box-arrow-right" width="1em" height="1em" viewBox="0 0 16 16"
+                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M11.646 11.354a.5.5 0 0 1 0-.708L14.293 8l-2.647-2.646a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
+                <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                <path fill-rule="evenodd"
+                      d="M2 13.5A1.5 1.5 0 0 1 .5 12V4A1.5 1.5 0 0 1 2 2.5h7A1.5 1.5 0 0 1 10.5 4v1.5a.5.5 0 0 1-1 0V4a.5.5 0 0 0-.5-.5H2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-1.5a.5.5 0 0 1 1 0V12A1.5 1.5 0 0 1 9 13.5H2z"/>
+            </svg>
+            <span style="font-weight: bolder ">wyloguj</span>
+        </button>
+    </form>
+    <form id="person-info" th:action="@{/info}" method="get" class="d-inline-block" style="float: right">
+        <button onclick="submit()" class="btn btn-outline-info">
+            <svg style="font-size: 130% " class="bi bi-person-lines-fill" width="1em" height="1em" viewBox="0 0 16 16"
+                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+        </button>
+    </form>
 
-    </button>
-</form>
+    <div th:with="userName=${username},id=${userId}">
+        <h5>
+            Witaj <span th:text="${userName}"/>!
+        </h5>
+        <p>
+            Twoje id pomnożone razy 10 to <span th:text="${id}*10"/>
+        </p>
+        <!--    <p>session Id</p>-->
+        <!--            <p th:text="${session.currentUser.userId}" th:unless="${session == null}"></p>-->
 
-
-
-<div th:with="userName=${username},id=${userId}">
-    <h5>
-        Witaj <span th:text="${userName}"/>!
-    </h5>
-    <p>
-        Twoje id pomnożone razy 10 to <span th:text="${id}*10"/>
-    </p>
-</div>
+    </div>
 
 </header>
 <div>
     <span class="display-4">Twoje wydatki</span>
-    <form id="add-button" th:action="@{/expenses/add}" method="get" class="d-inline-block" style="  margin-left: 40px; vertical-align: text-bottom">
-<!--        <input type="button" onclick="submit()" class="btn btn-outline-info"-->
-<!--               value="" />-->
+    <form id="add-button" th:action="@{/expenses/add}" method="get" class="d-inline-block"
+          style="  margin-left: 40px; vertical-align: text-bottom">
+        <!--        <input type="button" onclick="submit()" class="btn btn-outline-info"-->
+        <!--               value="" />-->
         <button onclick="submit()" class="btn btn-outline-info">
 
-            <svg style="font-size:160%" class="bi bi-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+            <svg style="font-size:160%" class="bi bi-plus" width="1em" height="1em" viewBox="0 0 16 16"
+                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
                 <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
             </svg>
             <span style="font-weight: bolder ">dodaj</span>
@@ -57,7 +72,7 @@
         <th scope="col"> Data</th>
         <th scope="col"> Opis</th>
         <th scope="col"> Kategoria</th>
-        <th scope="col"> Wartosc</th>
+        <th scope="col"> Wartość</th>
         <th scope="col"> Typ</th>
         <th scope="col"> Edytuj / Usuń</th>
 
@@ -78,10 +93,13 @@
         <td>
             <form th:action="@{expenses/edit/{expenseId}(expenseId = ${expense.getKey()})}" method="post"
                   class="d-inline-block">
-                <button onclick="submit()" class="btn btn-warning" >
-                    <svg style="font-size:130%"  class="bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
-                        <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                <button onclick="submit()" class="btn btn-warning">
+                    <svg style="font-size:130%" class="bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16"
+                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                        <path fill-rule="evenodd"
+                              d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
                     </svg>
 
                 </button>
@@ -90,9 +108,11 @@
             <form th:action="@{expenses/delete/{expenseId}(expenseId = ${expense.getKey()})}" method="post"
                   class="d-inline-block">
                 <button type="button" onclick="submit()" class="btn btn-danger" value="usuń">
-                    <svg style="font-size:130%"  class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <svg style="font-size:130%" class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16"
+                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                     </svg>
                 </button>
             </form>
@@ -153,7 +173,6 @@
 <!--    </form>-->
 <!--    <span class="glyphicon glyphicon-log-out"></span>-->
 <!--</div>-->
-
 
 
 </body>
