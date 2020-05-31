@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl_PL" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="UTF-8">
     <title>Hello WebSocket</title>
     <link href="../WebApplicationAK/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../WebApplicationAK/css/webSocket.css" rel="stylesheet">
@@ -14,17 +15,15 @@
 <form id="sign-up-go-to-welcome-button" th:action="@{/welcome-page}" method="get" class="d-inline-block" style="float: left">
     <input type="button" onclick="submit()" class="btn btn-light" value="wróć"/>
 </form>
-<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
-    enabled. Please enable
-    Javascript and reload this page!</h2></noscript>
+<noscript><h2 style="color: #ff0000">Twoja przeglądarka nie obsługuje js!</h2></noscript>
 <div id="main-content" class="container">
     <div class="row">
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="connect">Polaczenie WebSocket:</label>
-                    <button id="connect" class="btn btn-success" type="submit">Polacz</button>
-                    <button id="disconnect" class="btn btn-danger" type="submit" disabled="disabled">Rozlacz
+                    <label for="connect">Połączenie WebSocket:</label>
+                    <button id="connect" class="btn btn-success" type="submit">Połącz</button>
+                    <button id="disconnect" class="btn btn-danger" type="submit" disabled="disabled">Rozłącz
                     </button>
                 </div>
             </form>
@@ -33,13 +32,13 @@
             <form class="form-inline">
                 <div class="form-group">
                     <label for="name">Podaj imie: </label>
-                    <input type="text" id="name" class="form-control" placeholder="tutaj wpisz imie...">
+                    <input type="text" id="name" class="form-control" placeholder="tutaj wpisz imię...">
                     <br>
-                    <label for="msg">Powiedz cos: </label>
-                    <input type="text" id="msg" class="form-control" placeholder="Twoja wiadomosc...">
+                    <label for="msg">Powiedz coś: </label>
+                    <input type="text" id="msg" class="form-control" placeholder="Twoja wiadomość...">
                 </div>
                 <br>
-                <button id="send" class="btn btn-primary" type="submit">Wyslij</button>
+                <button id="send" class="btn btn-primary" type="submit">Wyślij</button>
             </form>
         </div>
     </div>

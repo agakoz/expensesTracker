@@ -17,17 +17,17 @@
 <form>
     <h2 class="form-signin-heading">Informacje Użytkownika</h2>
     <div class="form-group row">
-        <label class="col-sm-3 col-form-label">ID</label>
+        <label class="col-sm-3 col-form-label">ID:</label>
         <div th:text="${session.currentUser.getUserId()}" th:unless="${session == null}" class="col-sm-9"
             style=" background-color: whitesmoke; border: 1px solid lightgray; padding: 5px;"></div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Username</label>
+        <label class="col-sm-3 col-form-label">Nazwa:</label>
         <div th:text="${session.currentUser.getUsername()}" th:unless="${session == null} " class="col-sm-9"
             style=" background-color: whitesmoke; border: 1px solid lightgray; padding: 5px; "></div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Role</label>
+        <label class="col-sm-3 col-form-label">Rola:</label>
         <div th:text="${session.currentUser.getRole()}" th:unless="${session == null}" class="col-sm-9"
             style=" background-color: whitesmoke; border: 1px solid lightgray; padding: 5px;"></div>
     </div>

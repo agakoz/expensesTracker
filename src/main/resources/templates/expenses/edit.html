@@ -19,14 +19,14 @@
         <h2 class="form-signin-heading">Edytuj wydatek</h2>
 
         <div class="form-group row">
-            <label for="dateInput" class="col-sm-3 col-form-label">Data wydatku</label>
+            <label for="dateInput" class="col-sm-3 col-form-label">Data wydatku:</label>
             <div class="col-sm-9">
                 <input type="date" class="form-control" id="dateInput" th:field="*{date}" th:value="${expense.getDate()}">
             </div>
         </div>
         <p></p>
         <div class="form-group row">
-            <label for="descriptionInput" class="col-sm-3 col-form-label">Opis</label>
+            <label for="descriptionInput" class="col-sm-3 col-form-label">Opis:</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="descriptionInput" th:field="*{description}"
                        th:value="${expense.getDescription()}">
@@ -34,7 +34,7 @@
         </div>
         <p></p>
         <div class="form-group row">
-            <label for="categoryInput" class="col-sm-3 col-form-label">Kategoria</label>
+            <label for="categoryInput" class="col-sm-3 col-form-label">Kategoria:</label>
             <div class="col-sm-9">
                 <select class="form-control" id="categoryInput" th:field="*{category}" th:value="${expense.getCategory()}">
                     <option th:value="#{tss.cat1}" th:text="#{tss.cat1}"></option>
@@ -51,7 +51,7 @@
         <p></p>
         <div class="form-group row">
 
-            <label for="amountInput" class="col-sm-3 col-form-label">Wartosc</label>
+            <label for="amountInput" class="col-sm-3 col-form-label">Wartość:</label>
             <div class="col-sm-9">
                 <input class="form-control" id="amountInput" type="number" step="0.01" th:field="*{amount}"
                        th:value="${expense.getAmount()}">
